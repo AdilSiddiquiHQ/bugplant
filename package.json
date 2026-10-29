@@ -1,0 +1,49 @@
+{
+  "name": "bugplant",
+  "version": "0.1.0",
+  "description": "Plant bugs in the code your agent just wrote. Your tests should kill them.",
+  "type": "module",
+  "bin": {
+    "bugplant": "bin/bugplant.js"
+  },
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "scripts/bugplant.sh",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/",
+    "demo": "node scripts/demo.mjs",
+    "gifs": "node scripts/make-gifs.mjs",
+    "check": "node scripts/check.js",
+    "readme": "node scripts/readme-check.mjs"
+  },
+  "keywords": [
+    "mutation-testing",
+    "testing",
+    "test-quality",
+    "ai-agents",
+    "coding-agents",
+    "ci",
+    "zero-dependencies"
+  ],
+  "author": "Adil Siddiqui",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdilSiddiquiHQ/bugplant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AdilSiddiquiHQ/bugplant/issues"
+  },
+  "homepage": "https://github.com/AdilSiddiquiHQ/bugplant#readme"
+}

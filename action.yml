@@ -1,0 +1,52 @@
+name: bugplant
+description: Plant bugs in changed code and fail when the tests do not notice them.
+author: Adil Siddiqui
+
+branding:
+  icon: target
+  color: red
+
+inputs:
+  since:
+    description: Git ref to diff against.
+    required: false
+    default: origin/main
+  max:
+    description: Maximum number of bugs to plant.
+    required: false
+    default: "12"
+  min-score:
+    description: Fail when the kill score is below this percentage.
+    required: false
+    default: "0"
+  test-command:
+    description: Test command. {tests} is replaced with related test files.
+    required: false
+    default: ""
+  timeout:
+    description: Per-run timeout in milliseconds.
+    required: false
+    default: "30000"
+  seed:
+    description: Sampling seed, so runs are reproducible.
+    required: false
+    default: "1"
+  all:
+    description: Mutate every source file instead of only the diff.
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - name: Plant bugs
+      shell: bash
+      run: bash "${{ github.action_path }}/scripts/bugplant.sh"
+      env:
+        INPUT_SINCE: ${{ inputs.since }}
+        INPUT_MAX: ${{ inputs.max }}
+        INPUT_MIN_SCORE: ${{ inputs.min-score }}
+        INPUT_TEST_COMMAND: ${{ inputs.test-command }}
+        INPUT_TIMEOUT: ${{ inputs.timeout }}
+        INPUT_SEED: ${{ inputs.seed }}
+        INPUT_ALL: ${{ inputs.all }}
