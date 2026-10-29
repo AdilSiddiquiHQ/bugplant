@@ -21,7 +21,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test test/",
+    "test": "node scripts/test.mjs",
     "demo": "node scripts/demo.mjs",
     "gifs": "node scripts/make-gifs.mjs",
     "check": "node scripts/check.js",

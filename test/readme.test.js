@@ -8,11 +8,11 @@ import { runDemo, runStrictExample, ROOT } from '../scripts/demo.mjs';
 const readme = () => readFile(path.join(ROOT, 'README.md'), 'utf8');
 
 test('the README transcript is the real output of the demo', async () => {
-  const md = await readme();
+  const md = (await readme()).replace(/\r\n/g, '\n');
   const match = /<!-- demo:start -->\n```text\n([\s\S]*?)```\n<!-- demo:end -->/.exec(md);
   assert.ok(match, 'README must contain the demo markers');
   const documented = match[1].trimEnd();
-  const actual = (await runDemo()).text.replace(/^\n/, '').trimEnd();
+  const actual = (await runDemo()).text.replace(/\r\n/g, '\n').replace(/^\n/, '').trimEnd();
   assert.equal(documented, actual);
 });
 
